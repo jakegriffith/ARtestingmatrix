@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrix AR - Code Rain</title>
+    <meta name="description" content="AR Matrix code rain experience using AR.js">
+    
+    <!-- AR.js and A-Frame libraries -->
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.4.5/aframe/build/aframe-ar.min.js"></script>
+    
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #000;
+        }
+        
+        /* Loading message */
+        #loading {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            font-size: 18px;
+            text-align: center;
+            z-index: 1000;
+            text-shadow: 0 0 10px #00ff00;
+        }
+        
+        /* Instructions overlay */
+        #instructions {
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            text-align: center;
+            z-index: 999;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            border: 1px solid #00ff00;
+            border-radius: 5px;
+            max-width: 90%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading message -->
+    <div id="loading">
+        <div>INITIALIZING AR MATRIX...</div>
+        <div style="font-size: 12px; margin-top: 10px;">Allow camera access when prompted</div>
+    </div>
+    
+    <!-- Instructions -->
+    <div id="instructions" style="display: none;">
+        Point camera at Hiro marker<br>
+        <small>Reality breach detected...</small>
+    </div>
+
+    <!-- A-Frame AR Scene -->
+    <a-scene
+        embedded
+        arjs="sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;"
+        vr-mode-ui="enabled: false"
+        renderer="logarithmicDepthBuffer: true; precision: medium;">
+        
+        <!-- Camera -->
+        <a-entity camera></a-entity>
+        
+        <!-- Hiro Marker -->
+        <a-marker preset="hiro" id="hiro-marker">
+            <!-- Multiple code rain streams positioned around the marker -->
+            
+            <!-- Stream 1 - Front Left -->
+            <a-text 
+                id="stream1"
+                value="01010101"
+                color="#00ff00"
+                position="-0.5 1.5 0"
+                rotation="0 0 0"
+                scale="0.3 0.3 0.3"
+                align="center"
+                shader="flat"
+                transparent="true"
+                opacity="0.9">
+            </a-text>
+            
+            <!-- Stream 2 - Front Center -->
+            <a-text 
+                id="stream2"
+                value="MATRIX"
+                color="#00ff00"
+                position="0 1.8 0.2"
+                rotation="0 0 0"
+                scale="0.4 0.4 0.4"
+                align="center"
+                shader="flat"
+                transparent="true"
+                opacity="0.85">
+            </a-text>
+            
+            <!-- Stream 3 - Front Right -->
+            <a-text 
+                id="stream3"
+                value="ERROR404"
+                color="#00ff00"
+                position="0.5 1.3 -0.1"
+                rotation="0 0 0"
+                scale="0.35 0.35 0.35"
+                align="center"
+                shader="flat"
+                transparent="true"
+                opacity="0.8">
+            </a-text>
+            
+            <!-- Stream 4 - Left Side -->
+            <a-text 
+                id="stream4"
+                value="GLITCH"
+                color="#00ff00"
+                position="-0.8 1.0 0.3"
+                rotation="0 30 0"
+                scale="0.3 0.3 0.3"
+                align="center"
+                shader="flat"
+                transparent="true"
+                opacity="0.75">
+            </a-text>
+            
+            <!-- Stream 5 - Right Side -->
+            <a-text 
+                id="stream5"
+                value="BREACH"
+                color="#00ff00"
+                position="0.8 1.6 0.2"
+                rotation="0 -30 0"
+                scale="0.35 0.35 0.35"
+                align="center"
+                shader="flat"
+                transparent="true"
+                opacity="0.9">
+            </a-text>
+            
+            <!-- Stream 6 - Back Left -->
+            <a-text 
+                id="stream6"
+                value="SYS_ERR"
+                color="#00ff00"
+                position="-0.4 1.1 0.5"
+                rotation="0 0 0"
+                scale="0.25 0.25 0.25"
+                align="center"
+                shader="flat"
+                transparent="true"
+                opacity="0.7">
+            </a-text>
+            
+            <!-- Stream 7 - Back Right -->
+            <a-text 
+                id="stream7"
+                value="CORRUPT"
+                color="#00ff00"
+                position="0.4 1.9 0.4"
+                rotation="0 0 0"
+                scale="0.3 0.3 0.3"
+                align="center"
+                shader="flat"
+                transparent="true"
+                opacity="0.85">
+            </a-text>
+            
+            <!-- Stream 8 - High Center -->
+            <a-text 
+                id="stream8"
+                value="OVERRIDE"
+                color="#00ff00"
+                position="0 2.2 0.1"
+                rotation="0 0 0"
+                scale="0.4 0.4 0.4"
+                align="center"
+                shader="flat"
+                transparent="true"
+                opacity="0.8">
+            </a-text>
+            
+            <!-- Glitch streams - appear/disappear randomly -->
+            <a-text 
+                id="glitch1"
+                value="§¶∆ø"
+                color="#00ff00"
+                position="0.3 1.4 -0.2"
+                rotation="0 0 0"
+                scale="0.5 0.5 0.5"
+                align="center"
+                shader="flat"
+                transparent="true"
+                opacity="0">
+            </a-text>
+            
+            <a-text 
+                id="glitch2"
+                value="█▓▒░"
+                color="#00ff00"
+                position="-0.3 1.7 0.3"
+                rotation="0 0 0"
+                scale="0.45 0.45 0.45"
+                align="center"
+                shader="flat"
+                transparent="true"
+                opacity="0">
+            </a-text>
+        </a-marker>
+    </a-scene>
+
+    <script>
+        // Matrix characters for random generation
+        const matrixChars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*(){}[]<>?/\\|~`';
+        const glitchChars = '█▓▒░▄▀■□▪▫¶§†‡∆∇∞≈≠±×÷√∑∫';
+        const binaryChars = '01';
+        
+        // Hide loading message once scene is loaded
+        const scene = document.querySelector('a-scene');
+        scene.addEventListener('loaded', () => {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('instructions').style.display = 'block';
+        });
+        
+        // Random character generator
+        function getRandomChars(length, charSet) {
+            let result = '';
+            for (let i = 0; i < length; i++) {
+                result += charSet[Math.floor(Math.random() * charSet.length)];
+            }
+            return result;
+        }
+        
+        // Animate code streams
+        function animateStream(streamId, speed, charSet, maxLength) {
+            const stream = document.getElementById(streamId);
+            if (!stream) return;
+            
+            setInterval(() => {
+                // Generate random length text
+                const length = Math.floor(Math.random() * maxLength) + 3;
+                stream.setAttribute('value', getRandomChars(length, charSet));
+                
+                // Random flicker effect
+                if (Math.random() > 0.7) {
+                    const currentOpacity = parseFloat(stream.getAttribute('opacity'));
+                    stream.setAttribute('opacity', Math.random() * 0.5 + 0.3);
+                    setTimeout(() => {
+                        stream.setAttribute('opacity', currentOpacity);
+                    }, 50);
+                }
+            }, speed);
+        }
+        
+        // Glitch effect for special streams
+        function animateGlitch(streamId) {
+            const stream = document.getElementById(streamId);
+            if (!stream) return;
+            
+            setInterval(() => {
+                if (Math.random() > 0.7) {
+                    // Show glitch
+                    stream.setAttribute('value', getRandomChars(4, glitchChars));
+                    stream.setAttribute('opacity', Math.random() * 0.8 + 0.2);
+                    
+                    // Hide after short duration
+                    setTimeout(() => {
+                        stream.setAttribute('opacity', 0);
+                    }, Math.random() * 300 + 100);
+                }
+            }, Math.random() * 1000 + 500);
+        }
+        
+        // Floating animation
+        function animateFloat(streamId, range, speed) {
+            const stream = document.getElementById(streamId);
+            if (!stream) return;
+            
+            const originalPos = stream.getAttribute('position');
+            const baseY = originalPos.y;
+            let direction = 1;
+            let offset = 0;
+            
+            setInterval(() => {
+                offset += direction * 0.01;
+                if (Math.abs(offset) > range) {
+                    direction *= -1;
+                }
+                stream.setAttribute('position', {
+                    x: originalPos.x,
+                    y: baseY + offset,
+                    z: originalPos.z
+                });
+            }, speed);
+        }
+        
+        // Wait for marker to be found before starting animations
+        const marker = document.getElementById('hiro-marker');
+        marker.addEventListener('markerFound', () => {
+            console.log('Marker found - initializing Matrix breach...');
+            
+            // Animate main streams with different speeds
+            animateStream('stream1', 150, binaryChars, 8);
+            animateStream('stream2', 200, matrixChars, 6);
+            animateStream('stream3', 180, matrixChars, 9);
+            animateStream('stream4', 220, matrixChars, 7);
+            animateStream('stream5', 160, matrixChars, 8);
+            animateStream('stream6', 190, binaryChars, 10);
+            animateStream('stream7', 170, matrixChars, 9);
+            animateStream('stream8', 140, matrixChars, 8);
+            
+            // Animate glitch streams
+            animateGlitch('glitch1');
+            animateGlitch('glitch2');
+            
+            // Add floating animation to some streams
+            animateFloat('stream1', 0.15, 50);
+            animateFloat('stream2', 0.2, 70);
+            animateFloat('stream3', 0.12, 60);
+            animateFloat('stream5', 0.18, 55);
+            animateFloat('stream8', 0.25, 80);
+        });
+        
+        marker.addEventListener('markerLost', () => {
+            console.log('Marker lost - reality stabilizing...');
+        });
+    </script>
+</body>
+</html>
+
+<!-- 
+═══════════════════════════════════════════════════════════════════════════════
+                          MATRIX AR - SETUP INSTRUCTIONS
+═══════════════════════════════════════════════════════════════════════════════
+
+📱 TESTING ON YOUR PHONE:
+
+METHOD 1: GitHub Pages (RECOMMENDED - Free & Easy)
+──────────────────────────────────────────────────
+1. Create a new public repository on GitHub
+2. Upload this file (matrix-ar.html) to the repository
+3. Go to Settings → Pages
+4. Select "Deploy from branch" → main branch → Save
+5. GitHub will give you a URL like: https://yourusername.github.io/reponame/matrix-ar.html
+6. Open that URL on your phone's browser
+7. Allow camera access
+8. Point at the Hiro marker
+
+METHOD 2: Local Testing with Python Server
+──────────────────────────────────────────────────
+1. Run: python3 serve.py (see serve.py file)
+2. Get your computer's IP: ifconfig | grep inet (look for 192.168.x.x)
+3. On phone (same WiFi): http://YOUR-IP:8000/matrix-ar.html
+⚠️  Note: May not work on all browsers due to HTTPS requirement for camera
+
+METHOD 3: Using ngrok (Most Reliable for Local)
+──────────────────────────────────────────────────
+1. Install ngrok: brew install ngrok (or download from ngrok.com)
+2. Run: python3 serve.py
+3. In another terminal: ngrok http 8000
+4. Use the HTTPS URL ngrok provides (e.g., https://abc123.ngrok.io)
+5. Open on phone
+
+🎯 HIRO MARKER:
+
+You need the Hiro marker pattern to test this AR experience.
+
+Download/Print from:
+https://raw.githubusercontent.com/AR-js-org/AR.js/master/data/images/hiro.png
+
+Or search "AR.js Hiro marker" and print any result.
+You can also display it on another screen/tablet.
+
+The marker looks like a thick black square border with a pattern inside.
+
+💡 TIPS:
+────────
+- Ensure good lighting for marker detection
+- Hold phone steady when pointing at marker
+- Marker should be clearly visible and not tilted too much
+- Keep marker flat (print on paper or display on flat screen)
+- If code doesn't appear, try moving phone closer/farther from marker
+
+🎨 CUSTOMIZATION:
+─────────────────
+- Change colors: Modify color="#00ff00" in <a-text> elements
+- Add more streams: Copy/paste <a-text> elements with new IDs and positions
+- Adjust positions: Change position="x y z" values
+- Change speed: Modify speed values in animateStream() calls
+- Add more glitch characters: Edit glitchChars variable
+
+═══════════════════════════════════════════════════════════════════════════════
+-->
